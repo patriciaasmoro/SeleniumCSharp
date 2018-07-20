@@ -21,7 +21,7 @@ namespace SeleniumFirst
         {
             PropertiesCollection.driver = new ChromeDriver();
 
-            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
+            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/Login.html");
             Console.WriteLine("Opened URL");
         }
 
@@ -29,23 +29,14 @@ namespace SeleniumFirst
         public void ExecuteTest()
         {
 
-            //Initialise the page by calling its reference
-            EAPageObject page = new EAPageObject();
+            //Login to Application
+            LoginPageObject pageLogin = new LoginPageObject();
 
-            page.txtInitial.SendKeys("Mitrais Software");
+            EAPageObject pageEA = pageLogin.Login("execute", "automation");
 
-            page.btnSave.Click();
-
-
-            //SeleniumTest.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
-
-            //SeleniumTest.EnterText("Initial", "executeautomation", PropertyType.Name);
-
-            //Console.WriteLine("The value from my Title is:" + SeleniumGetControl.GetTextFromDDL("TitleId", PropertyType.Id));
-
-            //Console.WriteLine("The value from my Initial is:" + SeleniumGetControl.GetText("Initial", PropertyType.Name));
-
-            //SeleniumTest.Click("Save", PropertyType.Name);
+            //Fill User Details
+            pageEA.FillUserForm("Ms.", "SM", "Patricia", "Stella Maris");
+            
         }
 
         //[Test]
