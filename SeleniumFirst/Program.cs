@@ -29,21 +29,17 @@ namespace SeleniumFirst
         public void ExecuteTest()
         {
 
+            ExcelLib.PopulateInCollection(@"F:\Projects\CDC\Tester\Data.xlsx");
+
             //Login to Application
             LoginPageObject pageLogin = new LoginPageObject();
 
-            EAPageObject pageEA = pageLogin.Login("execute", "automation");
+            EAPageObject pageEA = pageLogin.Login(ExcelLib.ReadData(1, "UserName"),ExcelLib.ReadData(1,"Password"));
 
             //Fill User Details
-            pageEA.FillUserForm("Ms.", "SM", "Patricia", "Stella Maris");
+            pageEA.FillUserForm(ExcelLib.ReadData(1, "Initial"), ExcelLib.ReadData(1, "MiddleName"), ExcelLib.ReadData(1, "FirstName"));
             
         }
-
-        //[Test]
-        //public void NextTest()
-        //{
-        //    Console.WriteLine("Next method");
-        //}
 
         [TearDown]
         public void Cleanup()
